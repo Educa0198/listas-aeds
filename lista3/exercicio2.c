@@ -1,25 +1,28 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int main()
-{
-    float salario, media;
-    int filhos, contagem;
+void calcular_media_salario() {
+    float salario, soma_salarios = 0;
+    int num_filhos, quantidade_pessoas = 0;
 
-    salario = 1;
-    contagem = 0;
-    media = 0;
+    while (1) {
+        
+        scanf("%f %d", &salario, &num_filhos);
 
-    while (salario >= 0)
-    {
-        scanf("%f", &salario);
-        scanf("%i", &filhos);
-        media += salario;
-        contagem++;
+        if (salario < 0) {
+            break;
+        }
+
+        soma_salarios += salario;
+        quantidade_pessoas++;
     }
-    contagem--;
-   
-    printf("%.2f\n", media / contagem);
 
+    if (quantidade_pessoas > 0) {
+        float media_salario = soma_salarios / quantidade_pessoas;
+        printf("%.2f\n", media_salario);
+    } 
+}
+
+int main() {
+    calcular_media_salario();
     return 0;
 }

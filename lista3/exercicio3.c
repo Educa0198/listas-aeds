@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-// Function prototype
+
 void organiza(int *numero1, int *numero2, int *numero3);
 
 int main ()
