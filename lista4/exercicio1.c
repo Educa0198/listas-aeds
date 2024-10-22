@@ -16,14 +16,13 @@ int main()
 
 int recursivo(int numero)
 {
-    if (numero < 10)
+    if (numero == 0)
     {
          
-        return 1;
+        return 0;
     }
-    else
-    {
-        
-        return 1 + recursivo(numero / 10);  
-    }
+    
+      
+        return 1 + recursivo(numero / 10.0);  
+    
 }
