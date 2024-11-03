@@ -6,6 +6,7 @@ void menu();
 void cadastrar();
 void listar();
 void alugueis();
+void lucroalugueis();
 
 int main()
 {
@@ -29,6 +30,10 @@ void menu()
     if( opcao == 3)
     {
         alugueis();
+    }
+    if( opcao == 4);
+    {
+        lucroalugueis();
     }
 
     if(opcao == 0)
@@ -127,5 +132,28 @@ void alugueis() {
 
 void lucroalugueis()
 {
-    
+    FILE *arquivo;
+    arquivo = fopen("arquivos\\exercicio8\\arquivo_teste8", "r");
+    char linha[100], nome[50], estado[20];
+    int aluguel, lucroTotal = 0;
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+       
+        if (sscanf(linha, "%49s R$: %d %19s", nome, &aluguel, estado) == 3) {
+            if (strcmp(estado, "alugado") == 0) {
+                int precoCarro = aluguel * 10;  
+                lucroTotal += aluguel;          
+            }
+        }
+    }
+
+ 
+    fclose(arquivo);
+    printf("\nO lucro total com os alugueis eh: R$ %d\n", lucroTotal);
+    menu();
 }
