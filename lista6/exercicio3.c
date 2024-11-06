@@ -62,4 +62,5 @@ void imprimir(int *vetor)
     {
         printf("%d ",vetor[i]);
     }
-}
+} 
+
