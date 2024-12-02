@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class carro
+class Carro
 {
     int tanque;
     float consumo;
@@ -16,7 +16,7 @@ public:
 
     void setabastecer(float abastecer)
     {
-        if (combustivel + abastecer < tanque)
+        if (combustivel + abastecer <= tanque) // Check if there is enough room in the tank
         {
             combustivel += abastecer;
         }
@@ -28,7 +28,16 @@ public:
 
     void setmover(float mover)
     {
-        distancia += mover;
+        float consumoNecessario = mover / consumo; // Fuel needed for the movement
+        if (combustivel >= consumoNecessario)
+        {
+            distancia += mover;
+            combustivel -= consumoNecessario; // Deduct fuel used
+        }
+        else
+        {
+            cout << "Nao ha combustivel suficiente para percorrer a distancia!" << endl;
+        }
     }
 
     int gettanque() { return tanque; }
@@ -38,13 +47,13 @@ public:
 };
 
 // Function to register a car
-carro cadastrar()
+Carro cadastrar()
 {
     int tanque;
     float consumo;
     float combustivel;
     float distancia;
-    carro p;
+    Carro p;
 
     cout << "Digite a capacidade do tanque: ";
     cin >> tanque;
@@ -65,11 +74,36 @@ carro cadastrar()
     return p;
 }
 
+void exibirCombustivel(Carro& carro, int numeroCarro)
+{
+    cout << "Combustivel do carro " << numeroCarro << ": " << carro.getcombustivel() << " litros" << endl;
+}
+
+void exibirDistancia(Carro& carro, int numeroCarro)
+{
+    cout << "Distancia do carro " << numeroCarro << ": " << carro.getdistancia() << " km" << endl;
+}
+
+void moverCarro(Carro& carro, int numeroCarro)
+{
+    float distancia;
+    cout << "Digite a distancia que o carro " << numeroCarro << " vai percorrer: ";
+    cin >> distancia;
+    carro.setmover(distancia);
+}
+
+void abastecerCarro(Carro& carro, int numeroCarro)
+{
+    float combustivel;
+    cout << "Digite a quantidade de litros para o carro " << numeroCarro << ": ";
+    cin >> combustivel;
+    carro.setabastecer(combustivel);
+}
+
 int main()
 {
     int opcao = -1;  // Initialize opcao to a value that is not 0 to enter the loop.
-    float distancia;
-    carro carros[2];
+    Carro carros[2];
 
     while (opcao != 0)
     {
@@ -79,38 +113,63 @@ int main()
         cout << "2 - Checar combustivel dos carros" << endl;
         cout << "3 - Checar a distancia dos carros" << endl;
         cout << "4 - Mover os carros" << endl;
-        
+        cout << "5 - Abastecer os carros" << endl;
         cout << "0 - Sair" << endl;
 
         cin >> opcao;
 
-        for (int i = 0; i < 2; i++)
+        switch (opcao)
         {
-            if (opcao == 1)
+        case 1:
+            // Cadastrar os carros
+            for (int i = 0; i < 2; i++)
             {
                 cout << "Cadastro do carro " << i + 1 << ":" << endl;
                 carros[i] = cadastrar();
             }
+            break;
 
-            if (opcao == 2)
+        case 2:
+            // Checar combustivel dos carros
+            for (int i = 0; i < 2; i++)
             {
-                cout << "Combustivel do carro " << i + 1 << ": " << carros[i].getcombustivel() << " litros" << endl;
+                exibirCombustivel(carros[i], i + 1);
             }
+            break;
 
-            if (opcao == 3)
+        case 3:
+            // Checar a distancia dos carros
+            for (int i = 0; i < 2; i++)
             {
-                cout << "Distancia do carro " << i + 1 << ": " << carros[i].getdistancia() << " km" << endl;
+                exibirDistancia(carros[i], i + 1);
             }
+            break;
 
-            if (opcao == 4)
+        case 4:
+            // Mover os carros
+            for (int i = 0; i < 2; i++)
             {
-                cout << "Digite a distancia que o carro " << i + 1 << " vai percorrer: ";
-                cin >> distancia;
-                carros[i].setmover(distancia);
+                moverCarro(carros[i], i + 1);
             }
+            break;
+
+        case 5:
+            // Abastecer os carros
+            for (int i = 0; i < 2; i++)
+            {
+                abastecerCarro(carros[i], i + 1);
+            }
+            break;
+
+        case 0:
+            cout << "Programa encerrado." << endl;
+            break;
+
+        default:
+            cout << "Opcao invalida!" << endl;
+            break;
         }
     }
 
-    cout << "Programa encerrado." << endl;
     return 0;
 }
