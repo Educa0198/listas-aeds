@@ -16,7 +16,7 @@ public:
 
     void setabastecer(float abastecer)
     {
-        if (combustivel + abastecer <= tanque) // Check if there is enough room in the tank
+        if (combustivel + abastecer <= tanque)
         {
             combustivel += abastecer;
         }
@@ -28,11 +28,11 @@ public:
 
     void setmover(float mover)
     {
-        float consumoNecessario = mover / consumo; // Fuel needed for the movement
+        float consumoNecessario = mover / consumo; 
         if (combustivel >= consumoNecessario)
         {
             distancia += mover;
-            combustivel -= consumoNecessario; // Deduct fuel used
+            combustivel -= consumoNecessario; 
         }
         else
         {
@@ -46,7 +46,7 @@ public:
     float getdistancia() { return distancia; }
 };
 
-// Function to register a car
+
 Carro cadastrar()
 {
     int tanque;
@@ -102,7 +102,7 @@ void abastecerCarro(Carro& carro, int numeroCarro)
 
 int main()
 {
-    int opcao = -1;  // Initialize opcao to a value that is not 0 to enter the loop.
+    int opcao = -1;  
     Carro carros[2];
 
     while (opcao != 0)
@@ -121,7 +121,7 @@ int main()
         switch (opcao)
         {
         case 1:
-            // Cadastrar os carros
+            
             for (int i = 0; i < 2; i++)
             {
                 cout << "Cadastro do carro " << i + 1 << ":" << endl;
@@ -130,7 +130,7 @@ int main()
             break;
 
         case 2:
-            // Checar combustivel dos carros
+          
             for (int i = 0; i < 2; i++)
             {
                 exibirCombustivel(carros[i], i + 1);
@@ -138,7 +138,7 @@ int main()
             break;
 
         case 3:
-            // Checar a distancia dos carros
+            
             for (int i = 0; i < 2; i++)
             {
                 exibirDistancia(carros[i], i + 1);
@@ -146,7 +146,7 @@ int main()
             break;
 
         case 4:
-            // Mover os carros
+          
             for (int i = 0; i < 2; i++)
             {
                 moverCarro(carros[i], i + 1);
@@ -154,7 +154,7 @@ int main()
             break;
 
         case 5:
-            // Abastecer os carros
+            
             for (int i = 0; i < 2; i++)
             {
                 abastecerCarro(carros[i], i + 1);
