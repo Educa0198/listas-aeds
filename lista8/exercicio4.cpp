@@ -52,5 +52,5 @@ class livro : autor
 
 int main()
 {
-   
+
 }
