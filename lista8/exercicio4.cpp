@@ -19,31 +19,10 @@ class autor
     }
 };
 
-class livro : autor 
+class livro 
 {
-    string titulo;
-    int anodepublicacao;
+ 
 
-    public:
-    void settitulo(string titulo1)
-    {
-        titulo = titulo1;
-    }
-
-    void setano(int ano)
-    {
-        anodepublicacao = ano;
-    }
-
-    string gettitulo()
-    {
-        return titulo;
-    }
-
-    int getano()
-    {
-        return anodepublicacao;
-    }
 
 };
 

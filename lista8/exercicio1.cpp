@@ -60,6 +60,7 @@ pessoa cadastrar() {
 }
 
 void exibir(const pessoa& individuo) {
+    cout << "Dados da pessoa:" << endl;
     cout << "Nome: " << individuo.getnome() << endl;
     cout << "Idade: " << individuo.getidade() << endl;
     cout << "Altura: " << individuo.getaltura() << endl;
