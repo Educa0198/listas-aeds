@@ -17,18 +17,16 @@ class Elevador
         setPessoasPresentes(PessoasPresentes1);
     }
 
-    public:
-
+public:
     Elevador()
     {
-        inicializar(0,0,0,0);
+        inicializar(0, 0, 0, 0);
     }
 
     Elevador(int capacidade1, int totalandares1)
     {
-        inicializar(0,totalandares1,capacidade1,0);
+        inicializar(0, totalandares1, capacidade1, 0);
     }
-
 
     void setAndarAtual(int andaratual1)
     {
@@ -40,11 +38,11 @@ class Elevador
         totalandares = totalandares1;
     }
 
-    void  setCapacidade(int capacidade1)
+    void setCapacidade(int capacidade1)
     {
         capacidade = capacidade1;
     }
-    
+
     void setPessoasPresentes(int PessoasPresentes1)
     {
         PessoasPresentes = PessoasPresentes1;
@@ -72,26 +70,25 @@ class Elevador
 
     void EntraPessoa(int PessoasNovas)
     {
-        if(getPessoasPresentes() + PessoasNovas <= getCapacidade())
+        if (getPessoasPresentes() + PessoasNovas <= getCapacidade())
         {
             PessoasPresentes += PessoasNovas;
             Exibe();
-            
         }
     }
 
     void SaiPessoa(int PessoasNovas)
     {
-        if(getPessoasPresentes() - PessoasNovas >= 0)
+        if (getPessoasPresentes() - PessoasNovas >= 0)
         {
-            PessoasPresentes  -= PessoasNovas;
+            PessoasPresentes -= PessoasNovas;
             Exibe();
         }
     }
 
     void SobeAndar(int AndarSubindo)
     {
-        if(getAndarAtual() + AndarSubindo <= getTotalAndares())
+        if (getAndarAtual() + AndarSubindo <= getTotalAndares())
         {
             andaratual += AndarSubindo;
             Exibe();
@@ -100,7 +97,7 @@ class Elevador
 
     void DesceAndar(int AndarDescendo)
     {
-        if(getAndarAtual() - AndarDescendo >= 0)
+        if (getAndarAtual() - AndarDescendo >= 0)
         {
             andaratual -= AndarDescendo;
             Exibe();
@@ -125,21 +122,28 @@ int main()
 
     cin >> capacidade;
     cin >> TotalAndares;
-    Elevador elevador1(TotalAndares,capacidade);
+    Elevador elevador1(TotalAndares, capacidade);
 
     cin >> acoes;
-    
-   for (int i = 0; i <= acoes; i++) {
+
+    for (int i = 0; i <= acoes; i++)
+    {
         getline(cin, opcao);
-        if (opcao == "entrar") {
+        if (opcao == "entrar")
+        {
             elevador1.EntraPessoa(1);
-        } else if (opcao == "sair") {
+        }
+        else if (opcao == "sair")
+        {
             elevador1.SaiPessoa(1);
-        } else if (opcao == "subir") {
+        }
+        else if (opcao == "subir")
+        {
             elevador1.SobeAndar(1);
-        } else if (opcao == "descer") {
+        }
+        else if (opcao == "descer")
+        {
             elevador1.DesceAndar(1);
         }
     }
-
 }
